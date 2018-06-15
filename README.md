@@ -1,6 +1,7 @@
 # fontname-from-filename
 
-A quick and dirty script that changes font metadata using the filename
+A quick and dirty script that changes font metadata using the filename.
+Was made to work with [TypeRip](https://github.com/CodeZombie/TypeRip).
 
 ## Installation
 
@@ -11,7 +12,7 @@ curl -L https://git.io/vhoza -o fff.py
 chmod u+x fff.py
 ```
 
-Currently not sure if this works on Windows.
+Should work on all platforms, but only tested on macOS.
 
 ## Example
 
