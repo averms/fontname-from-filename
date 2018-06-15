@@ -29,9 +29,11 @@
 # this is based on.
 #
 # Dependencies:
+#   0) Python 3
 #   1) fonttools Python library (https://github.com/fonttools/fonttools)
 #
 # =============================================================================
+
 
 import os
 import sys
@@ -43,7 +45,7 @@ def _writeNoArgsError():
     sys.stderr.write("ERROR: You did not include enough arguments to the script." + os.linesep)
     sys.stderr.write(
         "Usage: fontnameFromFilename.py [FONT PATH 1] [FONT PATH 2] <FONT PATH ...>" + os.linesep)
-    sys.exit(1)
+    sys.exit(2)
 
 
 def _makeNameRecords(the_font) -> list:
@@ -87,18 +89,30 @@ def _splitAndGetDataFromFontname(font_filename: str) -> tuple:
     Returns a tuple including the font family and font variant including versions with no spaces.
     """
     simplified_fontname = _simplifyFontPath(font_filename)
-    split_fontname = simplified_fontname.split(' ', 1)
-    # First part is font family and second is the variant
-    font_family = split_fontname[0]
-    nospaces_font_family = font_family.replace(' ', '')
-    variant = split_fontname[1]
-    nospaces_variant = variant.replace(' ', '')
+    try:
+        split_fontname = simplified_fontname.split(' ', 1)
+        # First part is font family and second is the variant
+        font_family = split_fontname[0]
+        nospaces_font_family = font_family.replace(' ', '')
+        variant = split_fontname[1]
+        nospaces_variant = variant.replace(' ', '')
+    except IndexError as e:
+        sys.stderr.write('ERROR: ' + str(e) + os.linesep)
+        sys.stderr.write('Make sure your font filenames are in the right format' + os.linesep)
+        sys.exit(1)
+
     return (font_family, nospaces_font_family, variant, nospaces_variant)
 
 
 def _simplifyFontPath(font_filepath: str) -> str:
     """Turn possible font path into basename without extension"""
-    return font_filepath.rsplit('/', 1)[-1].replace('.ttf', '', 1).replace('.otf', '', 1)
+    file_with_ext = os.path.splitext(os.path.basename(font_filepath))
+    # We get a tuple with the pathless basename first and the extension second.
+    if file_with_ext[1] != '.ttf' and file_with_ext[1] != '.otf':
+        sys.stderr.write('ERROR: Make sure file ' +
+                         file_with_ext[0] + ' is a ttf or otf font file.' + os.linesep)
+        sys.exit(1)
+    return file_with_ext[0]
 
 
 def main(argv: list):
