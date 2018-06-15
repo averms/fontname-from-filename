@@ -42,9 +42,9 @@ from fontTools import ttLib
 
 
 def _writeNoArgsError():
-    sys.stderr.write("ERROR: You did not include enough arguments to the script." + os.linesep)
+    sys.stderr.write('ERROR: You did not include enough arguments to the script.' + os.linesep)
     sys.stderr.write(
-        "Usage: fontnameFromFilename.py [FONT PATH 1] [FONT PATH 2] <FONT PATH ...>" + os.linesep)
+        'Usage: fontnameFromFilename.py [FONT PATH 1] [FONT PATH 2] <FONT PATH ...>' + os.linesep)
     sys.exit(2)
 
 
@@ -109,8 +109,8 @@ def _simplifyFontPath(font_filepath: str) -> str:
     file_with_ext = os.path.splitext(os.path.basename(font_filepath))
     # We get a tuple with the pathless basename first and the extension second.
     if file_with_ext[1] != '.ttf' and file_with_ext[1] != '.otf':
-        sys.stderr.write('ERROR: Make sure file ' +
-                         file_with_ext[0] + ' is a ttf or otf font file.' + os.linesep)
+        sys.stderr.write("ERROR: Make sure file '" +
+                         font_filepath + "' is a ttf or otf font file." + os.linesep)
         sys.exit(1)
     return file_with_ext[0]
 
@@ -136,7 +136,7 @@ def main(argv: list):
             sys.stderr.write("ERROR: unable to write new name to OpenType tables for '" +
                              font_file_path + "'." + os.linesep)
             sys.stderr.write(
-                '       Check the file permissions for the font file you are trying to rename.' + os.linesep)
+                'Check the file permissions for the font file you are trying to rename.' + os.linesep)
             sys.exit(1)
         # if there is another exception it will not be caught, i'm not sure what the possible exceptions are.
 
