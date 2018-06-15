@@ -8,7 +8,7 @@ Was made to work with [TypeRip](https://github.com/CodeZombie/TypeRip).
 ```
 # fff.py is a bit easier to type but use whatever you want
 # I personally use a shell wrapper script.
-curl -L https://git.io/vhoza -o fff.py
+curl -L https://git.io/vhXyO -o fff.py
 chmod u+x fff.py
 ```
 
