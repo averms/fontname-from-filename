@@ -40,6 +40,8 @@ import sys
 
 from fontTools import ttLib
 
+# meme workaround
+FONT_FAMILY_WORD_COUNT = 3
 
 def _writeNoArgsError():
     sys.stderr.write('ERROR: You did not include enough arguments to the script.' + os.linesep)
@@ -90,11 +92,13 @@ def _splitAndGetDataFromFontname(font_filename: str) -> tuple:
     """
     simplified_fontname = _simplifyFontPath(font_filename)
     try:
-        split_fontname = simplified_fontname.split(' ', 1)
+        split_fontname = simplified_fontname.split(' ')
         # First part is font family and second is the variant
-        font_family = split_fontname[0]
+        font_family = split_fontname[:FONT_FAMILY_WORD_COUNT]
+        font_family = ' '.join(font_family)
         nospaces_font_family = font_family.replace(' ', '')
-        variant = split_fontname[1]
+        variant = split_fontname[FONT_FAMILY_WORD_COUNT:]
+        variant = ' '.join(variant)
         nospaces_variant = variant.replace(' ', '')
     except IndexError as e:
         sys.stderr.write('ERROR: ' + str(e) + os.linesep)
