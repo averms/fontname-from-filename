@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
-
+# ------------------------------------------------------------------------------
 # MIT License
 # Copyright (c) 2018 Aman Verma
-# ==============================================================================
+#
 # Edits ttf and otf font metadata using filename.
 # Thanks to Chris Simpkins who wrote the fontname.py script that
 # this is based on.
 #
 # Dependencies:
-#   0) Python 3.6 or greater
-#   1) fonttools Python library (https://github.com/fonttools/fonttools)
+#   Python 3.6 or greater
+#   fonttools Python library (https://github.com/fonttools/fonttools)
 #
-# ==============================================================================
+# ------------------------------------------------------------------------------
 
 
 import os
@@ -68,7 +68,7 @@ def _splitAndGetDataFromFontname(font_filename: str) -> Dict[str, str]:
     """Splits and parses font filename
 
     Takes in a string of the font filename optionally including extension and path.
-    Returns a dictionary including the font family and font variant including versions with no spaces.
+    Returns a dict of size 4
     """
     simplified_fontname = _getBasenameIfValid(font_filename)
     fontnames = {}
