@@ -34,12 +34,14 @@ Should work on all platforms, but only tested on macOS.
 ```
 
 Say the metadata of these fonts are messed up for whatever reason, but the filenames are
-correct. This script will fix that by changing records 1, 2, 4, and 6 of the fonttools xml.
+correct. This script will fix that by changing records 1, 2, 4, and 6 of the [name table][1].
 
 Works for fonts with more than one word family names if you change the `FONT_FAMILY_WORD_COUNT`
 variable in the beginning of the script.
 For example, if the font family is called "Source Code Pro" you should change
 it to 3.
+
+[1]: https://docs.microsoft.com/en-us/typography/opentype/spec/name
 
 ## Acknowledgements
 
