@@ -31,17 +31,15 @@ def main(argv: List[str]):
         _eprint(
             "Usage: fontnameFromFilename.py [FONT PATH 1] [FONT PATH 2] <FONT PATH ...>"
         )
-        sys.exit(2)
+        sys.exit(1)
 
     for font_file_path in argv:
         # test if font file exists, maybe should become try/except
         if not _fileExists(font_file_path):
             _eprint(
-                "ERROR: the path '",
-                font_file_path,
-                "' does not appear to be a valid file path.",
+                f"ERROR: the path '{font_file_path}' does not appear to be a valid file path."
             )
-            sys.exit(2)  # No such file or directory
+            sys.exit(1)
 
         font_data = _splitAndGetDataFromFontname(font_file_path)
         the_tt_font = ttLib.TTFont(font_file_path)
@@ -53,14 +51,12 @@ def main(argv: List[str]):
             the_tt_font.save(font_file_path)
         except PermissionError:
             _eprint(
-                "ERROR: unable to write new name to OpenType tables for '",
-                font_file_path,
-                "'.",
+                f"ERROR: unable to write new name to OpenType tables for '{font_file_path}'."
             )
             _eprint(
                 "Check the file permissions for the font file you are trying to rename."
             )
-            sys.exit(13)  # Permission denied
+            sys.exit(1)
         # there might be other possible exceptions
 
 
@@ -84,14 +80,14 @@ def _splitAndGetDataFromFontname(font_filename: str) -> Dict[str, str]:
     except IndexError as e:
         _eprint("ERROR:", str(e))
         _eprint("Make sure your font filenames are in the right format")
-        sys.exit(22)
+        sys.exit(1)
 
     return fontnames
 
 
 def _renameSingleFont(namerecord: list, new_names: Dict[str, str]) -> None:
     """Renames a single font using a list of references to the namerecord
-    
+
     Loops through namerecords, checking nameID equality. Usually there will be two namerecords
     for each nameID, one in utf-8 and another in some random encoding that I couldn't figure out.
     TODO: figure out what this encoding is and write it.
@@ -119,7 +115,7 @@ def _getBasenameIfValid(filepath: str) -> str:
     file_with_ext = os.path.splitext(os.path.basename(filepath))
     if file_with_ext[1] != ".ttf" and file_with_ext[1] != ".otf":
         _eprint("ERROR: Make sure file '", filepath, "' is a ttf or otf font file.")
-        sys.exit(22)  # Invalid argument
+        sys.exit(1)
     return file_with_ext[0]
 
 
