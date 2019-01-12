@@ -29,7 +29,7 @@ def main(argv: List[str]):
     if len(argv) < 1:
         _eprint("ERROR: You did not include enough arguments to the script.")
         _eprint(
-            "Usage: fontnameFromFilename.py [FONT PATH 1] [FONT PATH 2] <FONT PATH ...>"
+            "Usage: fontnameFromFilename.py <font_file>..."
         )
         sys.exit(1)
 
