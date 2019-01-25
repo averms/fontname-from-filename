@@ -1,17 +1,14 @@
 #!/usr/bin/env python3
-# ------------------------------------------------------------------------------
-# MIT License
-# Copyright (c) 2018 Aman Verma
-#
-# Edits ttf and otf font metadata using filename.
-# Thanks to Chris Simpkins who wrote the fontname.py script that
-# this is based on.
+# -----------------------------------------------------------------------------
+# Edits ttf and otf font metadata using the filename.
+# Copyright (c) 2018 - 2019 Aman Verma
+# Copyright (c) 2017 Chris Simpkins
+# See LICENSE file for license details
 #
 # Dependencies:
 #   Python 3.6 or greater
 #   fonttools Python library (https://github.com/fonttools/fonttools)
-#
-# ------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 
 
 import os
