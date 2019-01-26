@@ -25,9 +25,7 @@ def main(argv: List[str]):
     # in case there is no input
     if len(argv) < 1:
         _eprint("ERROR: You did not include enough arguments to the script.")
-        _eprint(
-            "Usage: fontnameFromFilename.py <font_file>..."
-        )
+        _eprint("Usage: fontnameFromFilename.py <font_file>...")
         sys.exit(1)
 
     for font_file_path in argv:
@@ -108,7 +106,7 @@ def _renameSingleFont(namerecord: list, new_names: Dict[str, str]) -> None:
 
 def _getBasenameIfValid(filepath: str) -> str:
     """Turn possible font path into basename and ensure it is a ttf  or otf file."""
-    # We get a tuple with the pathless basename and the extension.
+    # file_with_ext is a tuple with the pathless basename and the extension.
     file_with_ext = os.path.splitext(os.path.basename(filepath))
     if file_with_ext[1] != ".ttf" and file_with_ext[1] != ".otf":
         _eprint("ERROR: Make sure file '", filepath, "' is a ttf or otf font file.")
@@ -118,9 +116,7 @@ def _getBasenameIfValid(filepath: str) -> str:
 
 def _fileExists(filepath: str) -> bool:
     """Tests for existence of a file"""
-    return bool(
-        os.path.exists(filepath) and os.path.isfile(filepath)
-    )  # test that exists and is a file
+    return bool(os.path.exists(filepath) and os.path.isfile(filepath))
 
 
 def _eprint(*args, **kwargs) -> None:
