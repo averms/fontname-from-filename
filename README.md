@@ -5,12 +5,20 @@ Was made to work with [TypeRip](https://github.com/CodeZombie/TypeRip).
 
 ## Installation
 
-```
+```sh
 # fff.py is a bit easier to type but use whatever you want
-# I personally use a shell wrapper script.
-curl -L https://git.io/vhXyO -o fff.py
+curl -L https://github.com/a-vrma/fontname-from-filename/raw/master/fontname-from-filename.py -o fff.py
 chmod u+x fff.py
 ```
+
+If one wants to keep the dependencies for this script in a separate virtual environment but still have it executable and in the path, then they can use a shell wrapper script like so:
+
+```sh
+#!/bin/sh
+exec /path/to/venv/python /path/to/fontname-from-filename.py "$@"
+```
+
+## Platforms
 
 Should work on all platforms, but only tested on macOS.
 
