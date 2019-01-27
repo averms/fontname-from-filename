@@ -25,7 +25,7 @@ def main(argv: List[str]):
     # in case there is no input
     if len(argv) < 1:
         _eprint("ERROR: You did not include enough arguments to the script.")
-        _eprint("Usage: fontnameFromFilename.py <font_file>...")
+        _eprint("Usage: fontname-from-filename.py <font_file>...")
         sys.exit(1)
 
     for font_file_path in argv:
