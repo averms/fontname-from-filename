@@ -13,7 +13,7 @@
 
 import os
 import sys
-from typing import List, Dict
+from typing import Dict, List
 
 from fontTools import ttLib
 
@@ -39,9 +39,10 @@ def main(argv: List[str]) -> None:
 
         font_data = _splitAndGetDataFromFontname(font_file_path)
         the_tt_font = ttLib.TTFont(font_file_path)
-        # get a list of namerecords, references to parts of the TTFont object
+        # Get a list of namerecords: references to parts of the TTFont object.
         font_namerecords = the_tt_font["name"].names
         _renameSingleFont(font_namerecords, font_data)
+
         # Now try to save the TTFont back into a file:
         try:
             the_tt_font.save(font_file_path)
@@ -52,7 +53,7 @@ def main(argv: List[str]) -> None:
                 "Check the file permissions for the font file "
                 "you are trying to rename."
             )
-        # there might be other possible exceptions
+        # there might be other possible exceptions. idk.
 
 
 def _splitAndGetDataFromFontname(font_filename: str) -> Dict[str, str]:
@@ -114,7 +115,7 @@ def _getBasenameIfValid(filepath: str) -> str:
 
 
 def _fileExists(filepath: str) -> bool:
-    """Tests for existence of a file"""
+    """Tests for existence of a file."""
     return bool(os.path.exists(filepath) and os.path.isfile(filepath))
 
 
