@@ -18,23 +18,24 @@ from typing import List, Dict
 from fontTools import ttLib
 
 # meme workaround
-FONT_FAMILY_WORD_COUNT = 2
+FONT_FAMILY_WORD_COUNT = 1
 
 
-def main(argv: List[str]):
+def main(argv: List[str]) -> None:
     # in case there is no input
     if len(argv) < 1:
-        _eprint("ERROR: You did not include enough arguments to the script.")
-        _eprint("Usage: fontname-from-filename.py <font_file>...")
+        sys.exit(
+            "ERROR: You did not include enough arguments to the script.\n"
+            "Usage: fontname-from-filename.py <font_file>..."
+        )
         sys.exit(1)
 
     for font_file_path in argv:
         # test if font file exists, maybe should become try/except
         if not _fileExists(font_file_path):
-            _eprint(
+            sys.exit(
                 f"ERROR: the path '{font_file_path}' does not appear to be a valid file path."
             )
-            sys.exit(1)
 
         font_data = _splitAndGetDataFromFontname(font_file_path)
         the_tt_font = ttLib.TTFont(font_file_path)
@@ -45,13 +46,12 @@ def main(argv: List[str]):
         try:
             the_tt_font.save(font_file_path)
         except PermissionError:
-            _eprint(
-                f"ERROR: unable to write new name to OpenType tables for '{font_file_path}'."
+            sys.exit(
+                "ERROR: unable to write new name to OpenType "
+                f"tables for '{font_file_path}'.\n"
+                "Check the file permissions for the font file "
+                "you are trying to rename."
             )
-            _eprint(
-                "Check the file permissions for the font file you are trying to rename."
-            )
-            sys.exit(1)
         # there might be other possible exceptions
 
 
@@ -73,9 +73,9 @@ def _splitAndGetDataFromFontname(font_filename: str) -> Dict[str, str]:
         fontnames["variant"] = " ".join(split_variant)
         fontnames["nospaces_variant"] = fontnames["variant"].replace(" ", "")
     except IndexError as e:
-        _eprint("ERROR:", str(e))
-        _eprint("Make sure your font filenames are in the right format")
-        sys.exit(1)
+        sys.exit(
+            f"ERROR: {e:!s}\n" "Make sure your font filenames are in the right format."
+        )
 
     return fontnames
 
@@ -109,18 +109,13 @@ def _getBasenameIfValid(filepath: str) -> str:
     # file_with_ext is a tuple with the pathless basename and the extension.
     file_with_ext = os.path.splitext(os.path.basename(filepath))
     if file_with_ext[1] != ".ttf" and file_with_ext[1] != ".otf":
-        _eprint("ERROR: Make sure file '", filepath, "' is a ttf or otf font file.")
-        sys.exit(1)
+        sys.exit(f"ERROR: Make sure file '{filepath}' is a ttf or otf font file.")
     return file_with_ext[0]
 
 
 def _fileExists(filepath: str) -> bool:
     """Tests for existence of a file"""
     return bool(os.path.exists(filepath) and os.path.isfile(filepath))
-
-
-def _eprint(*args, **kwargs) -> None:
-    print(*args, file=sys.stderr, **kwargs)
 
 
 if __name__ == "__main__":
