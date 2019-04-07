@@ -3,3 +3,4 @@ __pycache__/
 cl*.py
 n*.txt
 .ropeproject
+.mypy_cache/
