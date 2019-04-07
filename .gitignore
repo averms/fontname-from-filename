@@ -1,6 +1,5 @@
 *.pyc
 __pycache__/
-cl*.py
-n*.txt
+cle*.py
 .ropeproject
 .mypy_cache/

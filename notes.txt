@@ -1,0 +1,35 @@
+Types
+=====
+$ type(the_tt_font)
+<class 'fontTools.ttLib.ttFont.TTFont'>
+
+$ type(the_tt_font["name"])
+<class 'fontTools.ttLib.tables._n_a_m_e.table__n_a_m_e'>
+
+$ type(the_tt_font["name"].names)
+<class 'list'>
+
+$ type(the_tt_font["name"].names[1])
+<class 'fontTools.ttLib.tables._n_a_m_e.NameRecord'>
+
+Name table
+==========
+| Used | Record | Description                          |
+|------|--------|--------------------------------------|
+| c    | 0      | copyright                            |
+| f    | 1      | font family name                     |
+| f    | 2      | font variant name                    |
+|      | 3      | unique id                            |
+| f    | 4      | full font name including variant     |
+|      | 5      | version string                       |
+| f    | 6      | full postscript name (no spaces)     |
+|      | 7      | trademark                            |
+|      | 8      | manufacturer name                    |
+|      | 9      | name of the designer of the typeface |
+|      | 10     | description                          |
+|      | 11     | url of font vendor                   |
+|      | 12     | url of typeface designer             |
+| c    | 13     | license description                  |
+| c    | 14     | license url                          |
+
+Check <https://docs.microsoft.com/en-us/typography/opentype/spec/name>
