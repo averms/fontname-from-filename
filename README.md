@@ -51,6 +51,10 @@ if the font family is called "Source Code Pro" you should change it to 3.
 
 [1]: https://docs.microsoft.com/en-us/typography/opentype/spec/name
 
+## Limitations
+
+Does not change the name of CFF fonts yet.
+
 ## Acknowledgements
 
 Thanks to Chris Simpkins for his work on
