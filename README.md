@@ -1,7 +1,6 @@
 # fontname-from-filename
 
 A quick and dirty script that changes font metadata using the filename.
-Was made to work with [TypeRip](https://github.com/CodeZombie/TypeRip).
 
 ## Installation
 
