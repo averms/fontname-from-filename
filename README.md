@@ -8,7 +8,7 @@ Requires a Python environment with fonttools.
 
 ```sh
 # fff.py is a bit easier to type but use whatever you want
-curl -L https://github.com/a-vrma/fontname-from-filename/raw/master/fontname-from-filename.py -o fff.py
+curl -L https://github.com/averms/fontname-from-filename/raw/master/fontname-from-filename.py -o fff.py
 chmod u+x fff.py
 ```
 
